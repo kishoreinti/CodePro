@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Strings</title>
+    <link rel="icon" type="image/png" href="../../icons/logo1.png">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const toggleSwitch = document.getElementById('modeToggle');
+        const currentTheme = localStorage.getItem('theme');
+    
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+    
+        toggleSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    const bubbleContainer = document.querySelector('.bubble-container');
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+
+        const size = Math.random() * 70 + 20 + 'px';
+        bubble.style.width = size;
+        bubble.style.height = size;
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = Math.random() * 5 + 10 + 's';
+        bubble.style.animationTimingFunction = 'cubic-bezier(0.36, 0.45, 0.63, 0.53)';
+
+        bubbleContainer.appendChild(bubble);
+
+        setTimeout(() => {
+            bubble.remove();
+        }, 15000);
+    }
+
+    setInterval(createBubble, 500);
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the menu toggle button and navigation
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navigation');
+
+    // Add click event listener to toggle menu visibility
+    menuToggle.addEventListener('click', () => {
+        navigation.classList.toggle('active');
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+        const copyButtons = document.querySelectorAll('.copy');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Find the nearest pre block
+                const preBlock = button.closest('.pre-container').querySelector('pre');
+
+                // Get the inner text of the pre block
+                const codeText = preBlock.innerText;
+
+                // Copy to clipboard
+                navigator.clipboard.writeText(codeText).then(() => {
+                    alert('Code copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    });
+      </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bubble-container"></div>
+    <header class="responsive">
+        <div class="logo"> 
+            <div class="logo-container">
+                <div class="line"></div>
+                <div class="triangle"></div>
+            </div>
+           
+            <span class="code">Code</span><span class="pro">Pro</span> 
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <nav class="navigation">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../dailyupdates/dailyupdates.html">Daily Updates</a></li>
+                <li><a href="../featuredarticles.html" style="background-color: #1A73E8;border-radius: 10px;">Tutorials</a></li>
+                <li><a href="../../about/about.html">About</a></li>
+                <li><a href="../../contact/contact.html">Contact</a></li>
+               <label class="switch">
+                    <input type="checkbox" id="modeToggle"> 
+                   <span class="slider">
+       
+               </span> 
+               </label>
+            </ul>
+        </nav>
+      
+    </header>
+    <h1 style="text-align: center;color:#007bff">Python Strings</h1>
+
+    <div class="container">
+        <p>Strings in Python are sequences of characters used to store and manipulate text. They are immutable, meaning once a string is created, it cannot be modified.</p>
+        <p>Strings can be created using single, double, or triple quotes <code><j>'Hello World!'</j></code> or <code><j>"Hello World!"</j></code></p>
+    <h2>Multiline String</h2>
+    <p>A multiline string can be created by using triple quotes as follows:</p>
+    <div class="pre-container">
+        <div class="pre-header">
+            <h3>Python</h3>
+            <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+        </div>
+    <pre><code class="actual-code">a =<j>'''This is a multi line string <br>used in python'''</j></code>
+<code class="actual-code"><z>print(</z>a<z>)</z></code></pre></div>
+<h2>String Opeartions</h2>
+<ol>
+    <li><strong>Concatenation</strong> :
+        <p>The process of joining two or more strings is known as concatenation.</p></li>
+        <div class="pre-container">
+            <div class="pre-header">
+                <h3>Python</h3>
+                <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+            </div>
+<pre>
+<code class="actual-code">a =<j>'Hello'</j></code>
+<code class="actual-code">b =<j>'World !'</j></code>
+<code class="actual-code"><z>print(</z>a + <j>" "</j> + b<z>)</z></code><code class="comment"># return output: Hello World !</code></pre></div>
+<li><strong>Repetition</strong> :
+<p>Repeating a string mutiple times using the <code>*</code> operator.You can repeat a string n number of times</p></li>
+ 
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code"><z>print(</z><j>"Python "</j> * 3<z>)</z></code>
+<code class="comment"># returns output: Python Python Python</code></pre></div>
+
+<li><strong>Indexing</strong>:
+<p> Strings in Python are arrays of bytes representing unicode characters.However, Python does not have a character data type, a single character is simply a string with a length of 1.
+    Square brackets can be used to access elements of the string.</p><p>Index values always starts from 0 and end at length of string -1 .</p>
+<b>Negative indexing</b> is one of the useful feature in python in which the indexing takes from right side of the string start from -1  to ....-n .</b></li>
+     
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python"</j></code>
+<code class="actual-code"><z>print(</z>word [0]<z>)</z></j></code><code class="comment"># returns output: P</code>
+<code class="actual-code"><z>print(</z>word [2]<z>)</z></j></code><code class="comment"># returns output: t</code>
+<code class="actual-code"><z>print(</z>word [-1]<z>)</z></j></code><code class="comment"># returns output: n</code>
+</pre></div>
+<li><strong>Slicing</strong>:</li>Python provides special string operation called slicing which used to extract the range of characters over a string.
+<p><b>Syntax :</b><code>string_variable [start_index : end_index]</code></p>
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python"</j></code>
+<code class="actual-code"><z>print(</z>word [0 : 2]<z>)</z></j></code><code class="comment"># returns output: Py</code>
+<code class="actual-code"><z>print(</z>word [1 : 4]<z>)</z></j></code><code class="comment"># returns output: yth</code>
+<code class="actual-code"><z>print(</z>word [-3 : -1]<z>)</z></j></code><code class="comment"># returns output: ho</code>
+</pre></div>
+<p>By using this slicing we can reverse a string easily in line of code in python which is as follows:</p>
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python"</j></code>
+<code class="actual-code"><z>print(</z>word [::-1]<z>)</z></j></code><code class="comment"># returns output: nohtyP</code>
+</pre></div>
+<li><strong>Length</strong>:</li>Python provides a buit in method for finding the length of string which is <code>len()</code> returns the number of characters in a string including spaces and special characters.
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python"</j></code>
+<code class="actual-code"><z>print(</z>len(word)<z>)</z></j></code><code class="comment"># returns output: 6</code>
+<code class="actual-code">word2 = <j>"Pyt _hon"</j></code>
+<code class="actual-code"><z>print(</z>len(word2)<z>)</z></j></code><code class="comment"># returns output: 8</code>
+</pre></div>
+</ol> 
+<h2>String Methods</h2>
+<ol>
+    <li><code>upper()</code> and <code>lower()</code>:</li>These two methods are used to change the case of a string.<code>upper()</code> method is used to convert all the characters in string to upper case and <code>lower()</code> is used to convert to lower case.
+    <div class="pre-container">
+        <div class="pre-header">
+            <h3>Python</h3>
+            <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+        </div>
+<pre>
+<code class="actual-code">word = <j>"Python"</j></code>
+<code class="actual-code"><z>print(</z><o style="color:orange">upper(</o>word2<o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: PYTHON</code>  
+<code class="actual-code"><z>print(</z><o style="color:orange">lower(</o>word2<o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: python</code></pre></div>   
+<li><code>strip()</code>:</li>This method is used to remove the leading and trailing (ending) spaces from the a string.
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"  Python  "</j></code>
+<code class="actual-code"><z>print(</z><o style="color:orange">strip(</o>word<o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: Python</code></pre></div>   
+<li><code>split()</code>:</li>This method is used to splits the string multiple parts based on the characters given where the split operation takes and returns the result values in a list format.
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python string concept"</j></code>
+<code class="actual-code"><z>print(</z>word.<o style="color:orange">split()</o><z>)</z></j></code><code class="comment"># returns output: ['Python','string','concept']</code> 
+<code class="actual-code">word = <j>"Python%string%concept"</j></code>
+<code class="actual-code"><z>print(</z>word.<o style="color:orange">split(</o>'%'<o style="color:orange">)</o></o><z>)</z></j></code><code class="comment"># returns output: ['Python','string','concept']</code></pre></div>   
+<li><code>join()</code>:</li>This method is used to join multiple strings opposite to <code>split()</code> method .For example a list contains contains multiple strings the <code>join()</code> can join all those strings to a single string. 
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">words = [<j>"Python"</j> ,<j>"string"</j>, <j>"concept"</j>]</code>
+<code class="actual-code"><z>print(</z><j>"-"</j>.<o style="color:orange">join(</o>words<o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: Python-string-concept</code> </pre></div>   
+<li><code>find()</code>and<code>replace()</code>:</li><code>find()</code> method is used to find the index of the first character of substring in the main string,<code>replace()</code> method is used to replace one string with another string.
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python Tutorial"</j></code>
+<code class="actual-code"><z>print(</z>word.<o style="color:orange">find(</o><j>"Tutorial"</j><o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: 7</code> 
+<code class="actual-code"><z>print(</z>word.<o style="color:orange">replace(</o><j>"Tutorial","Class"</j><o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: Python Class</code> 
+</pre></div>   
+<li><code>startswith()</code>and<code>endswith()</code></li>These methods are used to check whether the string starts with specific character/string or ends with specific character/string respectively.
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">word = <j>"Python Tutorial"</j></code>
+<code class="actual-code"><z>print(</z>word.<o style="color:orange">startswith(</o><j>"Tutorial"</j><o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: False</code> 
+<code class="actual-code"><z>print(</z>word.<o style="color:orange">endswith(</o><j>"Tutorial"</j><o style="color:orange">)</o><z>)</z></j></code><code class="comment"># returns output: True</code> 
+</pre></div> 
+</ol>  
+<h2>String Formatting</h2>
+<ol>
+    <li><strong>old style</strong> (<code>%</code> operator):</li>
+    <div class="pre-container">
+        <div class="pre-header">
+            <h3>Python</h3>
+            <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+        </div>
+    <pre>
+<code class="actual-code">name = <j>"john"</j></code>
+<code class="actual-code">age = 30</code>
+<code class="actual-code">message = <j>"My name is %s and I am %d years old."</j>%(name,age)</code>
+<code class="comment"># output: My name is john and I am 30 years old.</code>
+</pre></div> 
+<li><code>str.format()</code>Method :</li>
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">message = <j>"My name is {} and I am {} years old."</j>.<o style="color:orange">format</o>(name,age)</code>
+<code class="comment"># output: My name is john and I am 30 years old.</code>
+</pre></div>
+<li><strong>F-Strings</strong>(python 3.6+)</li>
+<div class="pre-container">
+    <div class="pre-header">
+        <h3>Python</h3>
+        <img class="copy" src="../../icons/clipboard.svg" alt="Copy to clipboard" />
+    </div>
+<pre>
+<code class="actual-code">message = <j>"My name is {name} and I am {age} years old."</j></code>
+<code class="comment"># output: My name is john and I am 30 years old.</code>
+</pre></div>
+</ol>
+<h2>Use cases of Strings</h2>
+<ul>
+    <li><strong>Data Storage</strong>: Strings store textual data, such as names, addresses, and messages.</li>
+    <li><strong>Data Parsing</strong>:  Strings are used in reading and processing textual data from files or user input.</li>
+    <li><strong>Web Devlopment</strong>:Generating and handling HTML, JSON, and XML.</li>
+    <li><strong>Data Serialization</strong>: Converting data structures to strings for storage or transmission.</li>
+    <li><strong>Logging and Debugging</strong>:  Recording events and debugging information as strings.</li>
+</ul>
+<p>Understanding string operations and methods is crucial for text processing and manipulation in Python.</p>
+
+<a href="python5_operators.html" class="read-more-btn-prev">Previous</a>
+<a href="quiz1.html" class="read-more-btn-next">Next</a>
+ 
+</div>
+
+
+    <footer>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/instagram.svg" style="height:25px;width:25px;padding:4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/facebook.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.youtube.com/@codepro-learn"> <img src="../../icons/youtube.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/linkedin.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+
+        <p>&copy; 2025 Tech Blog. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

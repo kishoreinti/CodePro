@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Java Programming</title>
+    <link rel="icon" type="image/png" href="../../icons/logo1.png">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const toggleSwitch = document.getElementById('modeToggle');
+        const currentTheme = localStorage.getItem('theme');
+    
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+    
+        toggleSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    const bubbleContainer = document.querySelector('.bubble-container');
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+
+        const size = Math.random() * 70 + 20 + 'px';
+        bubble.style.width = size;
+        bubble.style.height = size;
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = Math.random() * 5 + 10 + 's';
+        bubble.style.animationTimingFunction = 'cubic-bezier(0.36, 0.45, 0.63, 0.53)';
+
+        bubbleContainer.appendChild(bubble);
+
+        setTimeout(() => {
+            bubble.remove();
+        }, 15000);
+    }
+
+    setInterval(createBubble, 500);
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the menu toggle button and navigation
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navigation');
+
+    // Add click event listener to toggle menu visibility
+    menuToggle.addEventListener('click', () => {
+        navigation.classList.toggle('active');
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+        const copyButtons = document.querySelectorAll('.copy');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Find the nearest pre block
+                const preBlock = button.closest('.pre-container').querySelector('pre');
+
+                // Get the inner text of the pre block
+                const codeText = preBlock.innerText;
+
+                // Copy to clipboard
+                navigator.clipboard.writeText(codeText).then(() => {
+                    alert('Code copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    });
+
+    
+      </script>
+    <style>
+ :root {
+    --bg-color-light: #F5F5F5; /* Light background */
+    --text-color-light: #333333; /* Dark text for light mode */
+    --bg-color-dark: #202124; /* Dark background */
+    --text-color-dark: #E8EAED; /* Light text for dark mode */
+    --header-bg-light: #FFFFFF; /* Light header background */
+    --header-bg-dark: #2D2E30; /* Dark header background */
+    --blue-color: #1A73E8; /* Primary blue */
+    --light-blue-color: #8AB4F8; /* Light blue for accents */
+    --accent-color: #34A853; /* Green for highlights */
+    --line-color: #000000; /* Line color */
+    --shadow-color-light: 0 2px 5px rgba(0, 0, 0, 0.2); /* Light shadow */
+    --shadow-color-dark: 0 2px 5px rgba(255, 255, 255, 0.2); /* Dark shadow */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+/* Logo Container */
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 2%;
+    background-color: var(--header-bg-light);
+    color: var(--text-color-light);
+    box-shadow: var(--shadow-color-light);
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color-light);
+}
+
+/* Navigation Styles */
+nav ul {
+    display: flex;
+    flex-grow: 3;
+    justify-content: space-around;
+}
+
+nav ul li {
+    margin: 0 72px;
+    display: flex;
+}
+
+nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    background-color: var(--header-bg-light);
+    color: var(--text-color-light);
+    padding: 5px 10px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #fff;
+    background-color: var(--blue-color);
+    border-radius: 4px;
+}
+
+.nav-link.current {
+    background-color: var(--blue-color);
+    border-radius: 10px;
+}
+
+/* Main Container Styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow-color-light);
+}
+
+h2 {
+    color: var(--blue-color);
+}
+
+/* Code Block Styles */
+.pre-container {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-color-light);
+    background-color: var(--header-bg-light);
+}
+
+.pre-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pre-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--blue-color);
+}
+
+.copy {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    padding: 5px;
+    scale: 5;
+}
+
+pre {
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    box-shadow: var(--shadow-color-light);
+    background-color:whitesmoke;
+    margin-top: 0;
+}
+
+.comment {
+    color:red; /* Red for comments */
+}
+
+.actual-code {
+    color: blue; /* Blue for actual code */
+}
+
+/* Link Styles */
+a {
+    color: var(--blue-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Bubble Animation */
+.bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: var(--blue-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: move 15s infinite;
+}
+
+@keyframes move {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-120vh) scale(0); }
+}
+
+/* Logo Styles */
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color-light);
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo .code {
+    color: var(--blue-color);
+}
+
+header .logo .pro {
+    color: var(--text-color-light);
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Black Line */
+.line {
+    width: 40px;
+    height: 4px;
+    background-color: var(--line-color);
+    border-radius: 2px;
+}
+
+/* Inverted Triangle */
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid var(--blue-color);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    --bg-color-light: var(--bg-color-dark);
+    --text-color-light: var(--text-color-dark);
+    --header-bg-light: var(--header-bg-dark);
+    --line-color: var(--text-color-dark);
+    --shadow-color-light: var(--shadow-color-dark);
+}
+
+/* Toggle Switch Styles */
+.switch {
+    position: absolute;
+    top: 20%;
+    right: 25px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--blue-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    margin-top: 20px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Read More Button */
+.read-more-btn {
+    display: inline-block;
+    position: relative;
+    background-color: var(--blue-color);
+    color: #fff;
+    padding: 10px 30px;
+    left: 85%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn:hover {
+    background-color: var(--light-blue-color);
+}
+
+code {
+          
+          padding: 2px 4px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-family: Consolas, Monaco, monospace;
+      }
+
+
+/* Responsive Styles */
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        position: absolute;
+        left: 85%;
+        top: 5%;
+        cursor: pointer;
+    }
+
+    .navigation {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        background-color: var(--header-bg-light);
+    }
+
+    .navigation.active {
+        display: flex;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+    }
+
+    .navigation ul li {
+        border-bottom: 0px solid var(--line-color);
+    }
+
+    .navigation ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+    }
+
+    .switch {
+        position: absolute;
+        top: 28%;
+        right: 7%;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .read-more-btn {
+        left: 75%;
+    }
+    .container{
+        margin: 15px;
+    }
+    
+}
+
+    </style>
+</head>
+<body>
+    <div class="bubble-container"></div>
+    <header class="responsive">
+        <div class="logo">
+            <div class="logo-container">
+                <div class="line"></div>
+                <div class="triangle"></div>
+            </div>
+
+            <span class="code">Code</span><span class="pro">Pro</span>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <nav class="navigation">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../dailyupdates/dailyupdates.html">Daily Updates</a></li>
+                <li><a href="../featuredarticles.html" style="background-color: #1A73E8;border-radius: 10px;">Tutorials</a></li>
+                <li><a href="../../about/about.html">About</a></li>
+                <li><a href="../../contact/contact.html">Contact</a></li>
+
+
+            </ul>
+            <label class="switch">
+                <input type="checkbox" id="modeToggle">
+                <span class="slider">
+
+                </span>
+            </label>
+        </nav>
+
+    </header>
+
+    <h1 style="text-align: center;color:#007bff">Introduction to Java</h1>
+
+    <div class="container">
+
+  
+
+    <section class="content">
+        <h2>What is Java?</h2>
+        <p>Java is a high-level, object-oriented programming language developed by Sun Microsystems in 1995. It is widely used for building web applications, mobile apps, and enterprise software.</p>
+        <p>Java is one of the most widely used programming languages due to its robustness, security, and platform independence.Below are the key features of Java, explained in detail:</p>
+
+        <h2>Key Features of Java</h2>
+        <ol>
+            <li><h3>Platform Independent (Write Once, Run Anywhere - WORA)</h3></li>
+            <ul><li>Java follows the principle of "Write Once, Run Anywhere," meaning that once a Java program is written and compiled, it can run on any operating system without modification.</li>
+            <li>This is achieved through the Java Virtual Machine (JVM), which acts as an intermediary between the Java bytecode (compiled code) and the underlying operating system.</li>
+        <li>Example: A Java program compiled on Windows can be executed on Linux or macOS without recompilation.</li></ul>
+            <li><h3>Object-Oriented</h3></li>
+            <p>Java follows the principles of OOP, which makes code more modular, reusable, and scalable. The four pillars of OOP in Java are:</p>
+            <ul><li><b>Encapsulation</b>: Wrapping data and code into a single unit (class).</li>
+            <li><b>Abstraction</b>: Hiding implementation details and exposing only necessary functionalities.</li>
+        <li><b>Inheritance</b>: Enabling a class to inherit properties and behaviors from another class.</li>
+    <li><b>Polymorphism</b>: Allowing a single method or function to perform different tasks based on the object type.</li></ul>
+            <li><h3>Secure and Robust</h3></li>
+            <p>Java provides multiple security features, making it one of the most secure programming languages. These include:</p>
+            <ul>
+                <li><b>No explicit pointers</b>: Pointers in languages like C and C++ can be used for memory manipulation, making applications vulnerable. Java avoids this by handling memory allocation automatically.</li>
+                <li><b>Bytecode verification</b>: Before execution, JVM verifies bytecode for any unauthorized access or potential threats.</li>
+                <li><b>Exception handling</b>: Java provides built-in exception handling to prevent crashes due to runtime errors.</li>
+            </ul>
+            <li><h3>Multi-threaded</h3></li>
+            <p>Java supports multithreading, which allows multiple threads (small units of a process) to run concurrently, improving the efficiency of applications.</p>
+            <ul>
+                <li>Threads help in performing tasks like background processes, parallel execution, and real-time system handling.</li>
+                <li>Java provides the Thread class and the Runnable interface for implementing multithreading.</li>
+            </ul>
+            <li><h3>High Performance (Just-In-Time Compiler - JIT)</h3></li>
+            <ul>
+                <li>Java uses a Just-In-Time (JIT) compiler, which compiles bytecode into machine code at runtime, improving execution speed.</li>
+                <li>The JIT compiler optimizes frequently executed code, reducing the need for repeated interpretation.</li>
+            </ul>
+            <li><h3>Automatic Memory Management (Garbage Collection)</h3></li>
+            <ul>
+                <li>Java provides automatic memory management, meaning programmers do not need to manually allocate and free memory (unlike C and C++).</li>
+                <li>The Garbage Collector (GC) automatically removes unused objects to free up memory, preventing memory leaks.</li>
+            </ul>
+            <li><h3>Rich API (Application Programming Interface)</h3></li>
+            <p>Java comes with a rich set of built-in libraries (API), covering:</p>
+            <ul>
+                <li>Collections Framework (ArrayList, HashMap, etc.)</li>
+                <li>Networking (Sockets, HTTP communication)</li>
+                <li>Multithreading (Thread handling)</li>
+                <li>File Handling (Reading/writing files)</li>
+                <li>Database Connectivity (JDBC for SQL databases)</li>
+            </ul>
+            <li><h3>Distributed Computing Support</h3></li>
+            <ul>
+                <li>Java supports distributed computing, which means Java applications can be run over multiple systems connected via a network.</li>
+                <li>Technologies like Remote Method Invocation (RMI) and Enterprise JavaBeans (EJB) allow distributed processing.</li>
+            </ul>
+            <li><h3> Scalability & Enterprise Support</h3></li>
+            <ul>
+                <li>Java is used to build large-scale enterprise applications.</li>
+                <li>Frameworks like Spring Boot, Hibernate, and Java EE are widely used for developing business applications.</li>
+                <li>Java supports cloud-based applications and microservices.</li>
+            </ul>
+            <li><h3>Open-Source & Large Community Support</h3></li>
+            <ul>
+                <li>Java has h3 community support with millions of developers worldwide.</li>
+                <li>Open-source tools and frameworks like Spring, Hibernate, Apache Struts, and GraalVM enhance its capabilities.</li>
+                <li>Regular updates from Oracle (Java SE) and OpenJDK ensure continued improvements.</li>
+            </ul>
+            
+        </ol>
+
+    <h2>Usage of Java in the Current World</h2>
+    <p>Java remains one of the most widely used programming languages in various fields due to its platform independence, scalability, and security. Here's a quick look at its current uses:</p>
+    <ul>
+        <li><b>Web Development</b>: Java powers dynamic web applications with frameworks like Spring.</li>
+        <li><b>Mobile Apps (Android)</b>: Java is the foundation for Android app development.</li>
+        <li><b>Enterprise Software</b>: Used for scalable backend services in large companies.</li>
+        <li><b>Cloud Computing</b>: Java is ideal for building cloud-based applications.</li>
+        <li><b>Big Data</b>: Java is used in data processing frameworks like Apache Hadoop and Spark.</li>
+        <li><b>AI & Machine Learning</b>: Java supports AI models and machine learning with libraries like Deeplearning4j.</li>
+        <li><b>IoT</b>: Java powers IoT devices through Java ME Embedded.</li>
+        <li><b>Gaming</b>: Java is used in game development, notably for games like Minecraft.</li>
+        <li><b>Financial Services</b>.: Java is used in banking and trading platforms for secure transactions.</li>
+    <li><b>Scientific Applications</b>: Java is used for simulations and research in various fields.</li>
+    </ul>
+    <p>Java's versatility ensures its continued relevance across industries, making it a go-to language for developers worldwide.</p>
+
+        <a href="python2_syntax.html" class="read-more-btn">Next</a>
+    </div>
+
+    <footer>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/instagram.svg" style="height:25px;width:25px;padding:4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/facebook.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.youtube.com/@codepro-learn"> <img src="../../icons/youtube.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/linkedin.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <p>&copy; 2024 Tech Blog. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

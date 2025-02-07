@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Installation Guide and Best Practices</title>
+    <link rel="icon" type="image/png" href="../../icons/logo1.png">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const toggleSwitch = document.getElementById('modeToggle');
+        const currentTheme = localStorage.getItem('theme');
+    
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+    
+        toggleSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    const bubbleContainer = document.querySelector('.bubble-container');
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+
+        const size = Math.random() * 70 + 20 + 'px';
+        bubble.style.width = size;
+        bubble.style.height = size;
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = Math.random() * 5 + 10 + 's';
+        bubble.style.animationTimingFunction = 'cubic-bezier(0.36, 0.45, 0.63, 0.53)';
+
+        bubbleContainer.appendChild(bubble);
+
+        setTimeout(() => {
+            bubble.remove();
+        }, 15000);
+    }
+
+    setInterval(createBubble, 500);
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the menu toggle button and navigation
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navigation');
+
+    // Add click event listener to toggle menu visibility
+    menuToggle.addEventListener('click', () => {
+        navigation.classList.toggle('active');
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+        const copyButtons = document.querySelectorAll('.copy');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Find the nearest pre block
+                const preBlock = button.closest('.pre-container').querySelector('pre');
+
+                // Get the inner text of the pre block
+                const codeText = preBlock.innerText;
+
+                // Copy to clipboard
+                navigator.clipboard.writeText(codeText).then(() => {
+                    alert('Code copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    });
+
+    
+      </script>
+    <style>
+ :root {
+    --bg-color-light: #F5F5F5; /* Light background */
+    --text-color-light: #333333; /* Dark text for light mode */
+    --bg-color-dark: #202124; /* Dark background */
+    --text-color-dark: #E8EAED; /* Light text for dark mode */
+    --header-bg-light: #FFFFFF; /* Light header background */
+    --header-bg-dark: #2D2E30; /* Dark header background */
+    --blue-color: #1A73E8; /* Primary blue */
+    --light-blue-color: #8AB4F8; /* Light blue for accents */
+    --accent-color: #34A853; /* Green for highlights */
+    --line-color: #000000; /* Line color */
+    --shadow-color-light: 0 2px 5px rgba(0, 0, 0, 0.2); /* Light shadow */
+    --shadow-color-dark: 0 2px 5px rgba(255, 255, 255, 0.2); /* Dark shadow */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+/* Logo Container */
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 2%;
+    background-color: var(--header-bg-light);
+    color: var(--text-color-light);
+    box-shadow: var(--shadow-color-light);
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color-light);
+}
+
+/* Navigation Styles */
+nav ul {
+    display: flex;
+    flex-grow: 3;
+    justify-content: space-around;
+}
+
+nav ul li {
+    margin: 0 72px;
+    display: flex;
+}
+
+nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    background-color: var(--header-bg-light);
+    color: var(--text-color-light);
+    padding: 5px 10px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #fff;
+    background-color: var(--blue-color);
+    border-radius: 4px;
+}
+
+.nav-link.current {
+    background-color: var(--blue-color);
+    border-radius: 10px;
+}
+
+/* Main Container Styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow-color-light);
+}
+
+h2 {
+    color: var(--blue-color);
+}
+
+/* Code Block Styles */
+.pre-container {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-color-light);
+    background-color: var(--header-bg-light);
+}
+
+.pre-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pre-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--blue-color);
+}
+
+.copy {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    padding: 5px;
+    scale: 5;
+}
+
+pre {
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    box-shadow: var(--shadow-color-light);
+    background-color:whitesmoke;
+    margin-top: 0;
+}
+
+.comment {
+    color:red; /* Red for comments */
+}
+
+.actual-code {
+    color: blue; /* Blue for actual code */
+}
+
+/* Link Styles */
+a {
+    color: var(--blue-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Bubble Animation */
+.bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: var(--blue-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: move 15s infinite;
+}
+
+@keyframes move {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-120vh) scale(0); }
+}
+
+/* Logo Styles */
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color-light);
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo .code {
+    color: var(--blue-color);
+}
+
+header .logo .pro {
+    color: var(--text-color-light);
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Black Line */
+.line {
+    width: 40px;
+    height: 4px;
+    background-color: var(--line-color);
+    border-radius: 2px;
+}
+
+/* Inverted Triangle */
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid var(--blue-color);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    --bg-color-light: var(--bg-color-dark);
+    --text-color-light: var(--text-color-dark);
+    --header-bg-light: var(--header-bg-dark);
+    --line-color: var(--text-color-dark);
+    --shadow-color-light: var(--shadow-color-dark);
+}
+
+/* Toggle Switch Styles */
+.switch {
+    position: absolute;
+    top: 20%;
+    right: 25px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--blue-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    margin-top: 20px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Read More Button */
+.read-more-btn {
+    display: inline-block;
+    position: relative;
+    background-color: var(--blue-color);
+    color: #fff;
+    padding: 10px 30px;
+    left: 85%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn:hover {
+    background-color: var(--light-blue-color);
+}
+
+code {
+          
+          padding: 2px 4px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-family: Consolas, Monaco, monospace;
+      }
+
+/* Responsive Styles */
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        position: absolute;
+        left: 85%;
+        top: 5%;
+        cursor: pointer;
+    }
+    .container{
+        margin: 15px;
+    }
+
+    .navigation {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        background-color: var(--header-bg-light);
+    }
+
+    .navigation.active {
+        display: flex;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+    }
+
+    .navigation ul li {
+        border-bottom: 0px solid var(--line-color);
+    }
+
+    .navigation ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+    }
+
+    .switch {
+        position: absolute;
+        top: 28%;
+        right: 7%;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .read-more-btn {
+        left: 75%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="bubble-container"></div>
+    <header class="responsive">
+        <div class="logo">
+            <div class="logo-container">
+                <div class="line"></div>
+                <div class="triangle"></div>
+            </div>
+
+            <span class="code">Code</span><span class="pro">Pro</span>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <nav class="navigation">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../dailyupdates/dailyupdates.html">Daily Updates</a></li>
+                <li><a href="../featuredarticles.html" style="background-color: #1A73E8;border-radius: 10px;">Tutorials</a></li>
+                <li><a href="../../about/about.html">About</a></li>
+                <li><a href="../../contact/contact.html">Contact</a></li>
+
+
+            </ul>
+            <label class="switch">
+                <input type="checkbox" id="modeToggle">
+                <span class="slider">
+
+                </span>
+            </label>
+        </nav>
+
+    </header>
+
+    <h1 style="text-align: center;color:#007bff">SQL Installation Guide and Best Practices</h1>
+
+    <div class="container">
+        
+
+        <h2>1. Installing SQL (MySQL) on Windows</h2>
+        <p>Here’s how you can install MySQL on Windows:</p>
+        <ul>
+            <li><strong>Download MySQL Installer:</strong> Go to the <a href="https://dev.mysql.com/downloads/installer/" target="_blank">MySQL official website</a> and download the MySQL Installer for Windows.</li>
+            <li><strong>Run the Installer:</strong> Double-click the installer you downloaded and select “Custom Installation” or “Typical Installation” for a default setup.</li>
+            <li><strong>Choose MySQL Server Version:</strong> Select the version of MySQL you want to install.</li>
+            <li><strong>Installation:</strong> The installer will download the necessary files and complete the installation.</li>
+            <li><strong>Configure MySQL:</strong> Set a root password and configure other settings like the port (default is 3306).</li>
+            <li><strong>Finish Installation:</strong> Open MySQL Workbench to start using MySQL.</li>
+        </ul>
+
+        <h2>2. Installing SQL (MySQL) on Mac</h2>
+        <p>Follow these steps to install MySQL on macOS:</p>
+        <ul>
+            <li><strong>Download MySQL for macOS:</strong> Visit the <a href="https://dev.mysql.com/downloads/mysql/" target="_blank">MySQL download page</a> and select the macOS version.</li>
+            <li><strong>Install MySQL:</strong> Open the DMG file and follow the installation instructions.</li>
+            <li><strong>Start MySQL:</strong> Open “System Preferences” and start MySQL from the MySQL preference pane.</li>
+            <li><strong>Configure MySQL:</strong> Open “Terminal” and type <code>mysql -u root -p</code> to log in to MySQL.</li>
+            <li><strong>Install MySQL Workbench (optional):</strong> Download and install MySQL Workbench for a graphical interface.</li>
+        </ul>
+
+        <h2>3. Installing SQL (MySQL) on Linux</h2>
+        <p>For Ubuntu/Debian-based Linux:</p>
+        <ul>
+            <li><strong>Update Package Repository:</strong> Run <code>sudo apt update</code>.</li>
+            <li><strong>Install MySQL Server:</strong> Install MySQL with <code>sudo apt install mysql-server</code>.</li>
+            <li><strong>Secure MySQL Installation:</strong> Run <code>sudo mysql_secure_installation</code> to set the root password and secure your installation.</li>
+            <li><strong>Start MySQL Service:</strong> Start MySQL with <code>sudo systemctl start mysql</code>.</li>
+            <li><strong>Verify Installation:</strong> Check the status with <code>sudo systemctl status mysql</code>.</li>
+            <li><strong>Log in to MySQL:</strong> Use <code>sudo mysql -u root -p</code> to log into MySQL.</li>
+        </ul>
+
+        <h2>SQL System Requirements and Specifications</h2>
+        <h3>1. MySQL Specifications:</h3>
+        <ul>
+            <li><strong>Operating System:</strong> Windows 7 or later, macOS 10.13 or later, or a modern Linux distribution.</li>
+            <li><strong>RAM:</strong> Minimum 512 MB (2 GB or more recommended for production).</li>
+            <li><strong>Disk Space:</strong> Minimum 1 GB free disk space (may vary depending on usage).</li>
+            <li><strong>Processor:</strong> A modern processor (Intel i3 or equivalent with a minimum of 1 GHz).</li>
+            <li><strong>Network:</strong> Working network connection for downloading packages and updates.</li>
+        </ul>
+
+        <h2>SQL Best Practices</h2>
+        <ul>
+            <li>Always use parameterized queries to prevent SQL injection attacks.</li>
+            <li>Ensure proper indexing for faster query performance.</li>
+            <li>Use the <code>LIMIT</code> clause to limit the amount of data returned, especially for large queries.</li>
+            <li>Always back up your databases regularly.</li>
+            <li>Follow the principle of least privilege for database user access.</li>
+        </ul>
+
+        <h2>SQL Code Example</h2>
+        <pre><code class="actual-code">CREATE TABLE <z style="color:orangered">Employees</z> (
+    ID <z style="color:purple">INT</z> <z style="color:rgb(239, 96, 239)">PRIMARY</z> KEY,
+    Name <z style="color:purple">VARCHAR(100)</z>,
+    Age <z style="color:purple">INT</z>,
+    Department <z style="color:purple">VARCHAR(50)</z>
+);</code></pre>
+<a href="python2_syntax.html" class="read-more-btn">Next</a>
+    </div>
+
+    <footer>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/instagram.svg" style="height:25px;width:25px;padding:4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/facebook.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.youtube.com/@codepro-learn"> <img src="../../icons/youtube.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/linkedin.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <p>&copy; 2024 Tech Blog. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

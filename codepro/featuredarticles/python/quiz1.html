@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quiz - Tech Blog</title>
+    <link rel="icon" type="image/png" href="../../icons/logo1.png">
+    <style>
+:root {
+    --bg-color-light: #F5F5F5; /* Light background */
+    --text-color-light: #333333; /* Dark text for light mode */
+    --bg-color-dark: #202124; /* Dark background */
+    --text-color-dark: #E8EAED; /* Light text for dark mode */
+    --header-bg-light: #FFFFFF; /* Light header background */
+    --header-bg-dark: #2D2E30; /* Dark header background */
+    --blue-color: #1A73E8; /* Primary blue */
+    --light-blue-color: #8AB4F8; /* Light blue for accents */
+    --accent-color: #34A853; /* Green for highlights */
+    --line-color: #000000; /* Line color */
+    --shadow-color-light: 0 2px 5px rgba(0, 0, 0, 0.2); /* Light shadow */
+    --shadow-color-dark: 0 2px 5px rgba(255, 255, 255, 0.2); /* Dark shadow */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+/* Logo Container */
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 2%;
+    background-color: var(--header-bg-light);
+    color: var(--text-color-light);
+    box-shadow: var(--shadow-color-light);
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color-light);
+}
+
+/* Navigation Styles */
+nav ul {
+    display: flex;
+    flex-grow: 3;
+    justify-content: space-around;
+}
+
+nav ul li {
+    margin: 0 72px;
+    display: flex;
+}
+
+nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    background-color: var(--header-bg-light);
+    color: var(--text-color-light);
+    padding: 5px 10px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #fff;
+    background-color: var(--blue-color);
+    border-radius: 4px;
+}
+
+.nav-link.current {
+    background-color: var(--blue-color);
+    border-radius: 10px;
+}
+
+/* Main Container Styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow-color-light);
+}
+
+h2 {
+    color: var(--blue-color);
+}
+
+/* Code Block Styles */
+.pre-container {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-color-light);
+    background-color: white;
+}
+
+.pre-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.pre-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--blue-color);
+}
+
+.copy {
+    width: 15px; /* Fixed size for the icon */
+    height: 15px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+pre {
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    box-shadow: var(--shadow-color-light);
+    background-color:whitesmoke;
+    margin-top: 0;
+}
+
+.comment {
+    color:red; /* Red for comments */
+}
+
+.actual-code {
+    color: blue; /* Blue for actual code */
+}
+
+/* Link Styles */
+a {
+    color: var(--blue-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+          
+          padding: 2px 4px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-family: Consolas, Monaco, monospace;
+      }
+
+/* Bubble Animation */
+.bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: var(--blue-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: move 15s infinite;
+}
+
+@keyframes move {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-120vh) scale(0); }
+}
+
+/* Logo Styles */
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color-light);
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo .code {
+    color: var(--blue-color);
+}
+
+header .logo .pro {
+    color: var(--text-color-light);
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Black Line */
+.line {
+    width: 40px;
+    height: 4px;
+    background-color: var(--line-color);
+    border-radius: 2px;
+}
+
+/* Inverted Triangle */
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid var(--blue-color);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    --bg-color-light: var(--bg-color-dark);
+    --text-color-light: var(--text-color-dark);
+    --header-bg-light: var(--header-bg-dark);
+    --line-color: var(--text-color-dark);
+    --shadow-color-light: var(--shadow-color-dark);
+}
+
+/* Toggle Switch Styles */
+.switch {
+    position: absolute;
+    top: 20%;
+    right: 25px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--blue-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    margin-top: 20px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Read More Buttons */
+.read-more-btn-next {
+    display: inline-block;
+    position: relative;
+    background-color: var(--blue-color);
+    color: #fff;
+    padding: 10px 30px;
+    left: 78%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn-next:hover {
+    background-color: var(--light-blue-color);
+}
+
+.read-more-btn-prev {
+    display: inline-block;
+    position: relative;
+    background-color: var(--blue-color);
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn-prev:hover {
+    background-color: var(--light-blue-color);
+}
+
+.question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .submit-bt {
+            display: block;
+            width: 10%;
+            left:45%;
+            position:absolute;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color:var(--bg-color-light);
+            color: var(--bg-color-dark);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+        .popup h2 {
+            color: #28a745;
+            font-size: 24px;
+            
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .popup h2::before {
+            content: '✔';
+            font-size: 32px;
+            color: #28a745;
+            margin-right: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }   
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 10px;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-radius:10px;
+        }
+        
+
+/* Responsive styles for screens smaller than 480px */
+@media (max-width: 800px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .menu-toggle {
+      display: inline-block;
+      position:absolute;
+      left:85% ;
+      top:5%;/* Show menu toggle button */
+    cursor: pointer;
+    }
+  
+    .navigation {
+      width: 100%;
+      display: none; /* Hide navigation by default */
+      flex-direction: column;
+      background-color: var(--header-bg-light);
+    }
+  
+    .navigation.active {
+      display:flex; /* Show navigation when active */
+    }
+    .container{
+        margin: 15px;
+    }
+    .navigation ul {
+      flex-direction: column; /* Arrange items vertically */
+      gap: 0; /* Remove space between items */
+      padding: 0;
+    }
+  
+    .navigation ul li {
+      border-bottom: 0px solid var(--border-color-light);
+    }
+  
+    .navigation ul li a {
+      display: block;
+      padding: 10px;
+      font-size: 0.9rem;
+      color: var(--text-color-light);
+    }
+  
+    .navigation ul li a:hover {
+      background-color: var(--highlight-color-light); /* Highlight on hover */
+      color: var(--bg-color-light);
+    }
+    .switch {
+        position: absolute;
+        top: 28%;
+        right: 7%;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+    .read-more-btn{
+        left:80%;
+    }
+
+    .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .submit-bt {
+            display: block;
+            width: 30%;
+            left:35%;
+            position:absolute;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color:var(--header-bg-light);
+            color: var(--bg-color-dark);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+        .popup h2 {
+            color: #28a745;
+            font-size: 15px;
+            
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .popup h2::before {
+            content: '✔';
+            font-size: 32px;
+            color: #28a745;
+            margin-right: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }  
+        .read-more-btn-next{
+            left:50%;
+        } 
+
+  }
+
+    </style>
+</head>
+<body>
+    <div class="bubble-container"></div>
+    <header class="responsive">
+        <div class="logo">
+            <div class="logo-container">
+                <div class="line"></div>
+                <div class="triangle"></div>
+            </div>
+
+            <span class="code">Code</span><span class="pro">Pro</span>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <nav class="navigation">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../dailyupdates/dailyupdates.html">Daily Updates</a></li>
+                <li><a href="../featuredarticles.html" style="background-color: #1A73E8;border-radius: 10px;">Tutorials</a></li>
+                <li><a href="../../about/about.html">About</a></li>
+                <li><a href="../../contact/contact.html">Contact</a></li>
+              
+            </ul>
+              <label class="switch">
+      <input type="checkbox" id="modeToggle">
+      <span class="slider">
+
+      </span>
+  </label>
+        </nav>
+
+    </header>
+    <h1 style="text-align: center;color:#007bff">Python Quiz - 1 </h1>
+
+    <div class="container">
+
+        <form id="quiz-form">
+            <div class="question">
+                <h3>1. Python is ______________ programming language</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q1" value="a">An interpreted </label></li>
+                    <li><label><input type="radio" name="q1" value="b"> object oriented</label></li>
+                    <li><label><input type="radio" name="q1" value="c"> both interpreted and object oriented</label></li>
+                    <li><label><input type="radio" name="q1" value="d"> A database</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>2. Which operator is used to add two numbers in Python?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q2" value="a"> +</label></li>
+                    <li><label><input type="radio" name="q2" value="b"> -</label></li>
+                    <li><label><input type="radio" name="q2" value="c"> *</label></li>
+                    <li><label><input type="radio" name="q2" value="d"> /</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>3. Which data type is used to store text?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q3" value="a"> str</label></li>
+                    <li><label><input type="radio" name="q3" value="b"> int</label></li>
+                    <li><label><input type="radio" name="q3" value="c"> bool</label></li>
+                    <li><label><input type="radio" name="q3" value="d"> float</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>4. What is the output of <code>print(2 ** 3)</code>?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q4" value="a"> 6</label></li>
+                    <li><label><input type="radio" name="q4" value="b"> 8</label></li>
+                    <li><label><input type="radio" name="q4" value="c"> 9</label></li>
+                    <li><label><input type="radio" name="q4" value="d"> 12</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>5. Which of the following is a valid string in Python?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q5" value="a"> "Hello"</label></li>
+                    <li><label><input type="radio" name="q5" value="b"> 'Hello'</label></li>
+                    <li><label><input type="radio" name="q5" value="c"> """Hello"""</label></li>
+                    <li><label><input type="radio" name="q5" value="d"> All of the above</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>6. Which of the following is the correct syntax to print a message in Python?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q6" value="a"> echo "Hello"</label></li>
+                    <li><label><input type="radio" name="q6" value="b"> printf("Hello")</label></li>
+                    <li><label><input type="radio" name="q6" value="c"> print("Hello")</label></li>
+                    <li><label><input type="radio" name="q6" value="d"> cout << "Hello"</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>7. What is the result of <code>10 // 3</code>?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q7" value="a"> 3.3333</label></li>
+                    <li><label><input type="radio" name="q7" value="b"> 3</label></li>
+                    <li><label><input type="radio" name="q7" value="c"> 4</label></li>
+                    <li><label><input type="radio" name="q7" value="d"> 10</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>8. What data type is the result of <code>10 / 2</code>?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q8" value="a"> int</label></li>
+                    <li><label><input type="radio" name="q8" value="b"> float</label></li>
+                    <li><label><input type="radio" name="q8" value="c"> str</label></li>
+                    <li><label><input type="radio" name="q8" value="d"> bool</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>9. What is the correct way to write a comment in Python?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q9" value="a"> // This is a comment</label></li>
+                    <li><label><input type="radio" name="q9" value="b">-- This is a comment</label></li>
+                    <li><label><input type="radio" name="q9" value="c"> # This is a comment</label></li>
+                    <li><label><input type="radio" name="q9" value="d"> /* This is a comment */</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>10. How do you declare a variable in Python?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q10" value="a"> var x = 10</label></li>
+                    <li><label><input type="radio" name="q10" value="b"> int x = 10</label></li>
+                    <li><label><input type="radio" name="q10" value="c"> x = 10</label></li>
+                    <li><label><input type="radio" name="q10" value="d"> declare x = 10</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>11. What will be the output of following code </h3>
+                <pre><code class="actual-code">x = <j>"Python Quiz"</j></code>
+<code class="actual-code"><z>print(</z>x [2]<z>)</z></code></pre>
+                <ul class="options">
+                    <li><label><input type="radio" name="q11" value="a"> P</label></li>
+                    <li><label><input type="radio" name="q11" value="b"> i</label></li>
+                    <li><label><input type="radio" name="q11" value="c"> t</label></li>
+                    <li><label><input type="radio" name="q11" value="d"> None</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>What is a global variable ?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q12" value="a">A global variable is a variable that is accessible with in a loop</label></li>
+                    <li><label><input type="radio" name="q12" value="b">A global variable is a variable that is accessible from any part of a program</label></li>
+                    <li><label><input type="radio" name="q12" value="c">A global variable is a variable that is accessible with in a function</label></li>
+                    <li><label><input type="radio" name="q12" value="d"> None of the above</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>13. What does <code>len()</code> function do?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q13" value="a"> Returns the length of a string</label></li>
+                    <li><label><input type="radio" name="q13" value="b"> Returns the length of a list</label></li>
+                    <li><label><input type="radio" name="q13" value="c"> Returns the length of a tuple</label></li>
+                    <li><label><input type="radio" name="q13" value="d"> All of the above</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>what is the data type of 3 + 4j ?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q14" value="a"> complex</label></li>
+                    <li><label><input type="radio" name="q14" value="b"> int</label></li>
+                    <li><label><input type="radio" name="q14" value="c"> str</label></li>
+                    <li><label><input type="radio" name="q14" value="d"> decimal</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>15. What is the result of <code>type(10)</code>?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q15" value="a"> int</label></li>
+                    <li><label><input type="radio" name="q15" value="b"> float</label></li>
+                    <li><label><input type="radio" name="q15" value="c"> str</label></li>
+                    <li><label><input type="radio" name="q15" value="d"> bool</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>What will be the output of following code</h3>
+                <pre><code class="actual-code">x = <j>"Python Tutorial"</j></code>
+<code class="actual-code"><z>print(</z>x [1:5]<z>)</z></code></pre>
+                <ul class="options">
+                    <li><label><input type="radio" name="q16" value="a"> 'ython'</label></li>
+                    <li><label><input type="radio" name="q16" value="b"> 'ytho'</label></li>
+                    <li><label><input type="radio" name="q16" value="c">'pytho'</label></li>
+                    <li><label><input type="radio" name="q16" value="d"> 'ython '</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>What is the use of relational operators</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q17" value="a"> Used to compare the values of two variables </label></li>
+                    <li><label><input type="radio" name="q17" value="b"> Used to add two values</label></li>
+                    <li><label><input type="radio" name="q17" value="c"> Used to compare memory locations</label></li>
+                    <li><label><input type="radio" name="q17" value="d"> None of the above</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>18. What will be the output of <code>print("Hello" + " " + "World")</code>?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q18" value="a"> HelloWorld</label></li>
+                    <li><label><input type="radio" name="q18" value="b"> Hello World</label></li>
+                    <li><label><input type="radio" name="q18" value="c"> Hello, World</label></li>
+                    <li><label><input type="radio" name="q18" value="d"> "Hello World"</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>19. What will be the output  of following code</h3>
+                <pre><code class="actual-code">x = <j>"CodePro"</j></code>
+<code class="actual-code"><z>print(</z>x [::-1]<z>)</z></code></pre>
+                <ul class="options">
+                    <li><label><input type="radio" name="q19" value="a"> 'ProCode'</label></li>
+                    <li><label><input type="radio" name="q19" value="b"> 'orPedoC'</label></li>
+                    <li><label><input type="radio" name="q19" value="c">'CodeorP'</label></li>
+                    <li><label><input type="radio" name="q19" value="d"> 'edoCPro'</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <h3>20. How do you check the type of a variable in Python?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q20" value="a"> typeOf(var)</label></li>
+                    <li><label><input type="radio" name="q20" value="b"> typeof(var)</label></li>
+                    <li><label><input type="radio" name="q20" value="c"> type(var)</label></li>
+                    <li><label><input type="radio" name="q20" value="d"> checkType(var)</label></li>
+                </ul>
+            </div>
+            <button type="submit" class="submit-bt">Submit Quiz</button>
+            <a href="python6_strings.html" class="read-more-btn-prev">Previous</a>
+            <a href="python7_operators.html" class="read-more-btn-next">Next</a>
+
+        </form>
+
+    </div>
+    <footer>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/instagram.svg" style="height:25px;width:25px;padding:4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/facebook.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.youtube.com/@codepro-learn"> <img src="../../icons/youtube.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+        <a href="https://www.instagram.com/codepro_01/"> <img src="../../icons/linkedin.svg" style="height: 25px; width: 25px; padding: 4px 7px 2px 4px;"></a>
+
+        <p>&copy; 2025 Tech Blog. All Rights Reserved.</p>
+    </footer>
+    <div class="overlay"></div>
+    <div class="popup" id="result-popup">
+        <h2><br>🎉 Congratulations 🎉</h2>
+        <p id="score" style="color:rgb(60, 204, 60);"></p>
+        <button onclick="closePopup()" class="submit-btn">Close</button>
+
+    </div>
+
+    <script>
+        document.getElementById('quiz-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let score = 0;
+            const totalQuestions = 20;
+            const answers = {
+                q1: 'c', q2: 'a', q3: 'a', q4: 'b', q5: 'd',
+                q6: 'c', q7: 'b', q8: 'b', q9: 'c', q10: 'c',
+                q11: 'c', q12: 'b', q13: 'd', q14: 'a', q15: 'a',
+                q16: 'b', q17: 'a', q18: 'b', q19: 'b', q20: 'c'
+            };
+
+            for (let question in answers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                const correctAnswer = answers[question];
+                const options = document.querySelectorAll(`input[name="${question}"]`);
+
+                options.forEach(option => {
+                    const parentLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        parentLabel.classList.add('correct');
+                    } else if (selected && option.value === selected.value) {
+                        parentLabel.classList.add('incorrect');
+                    }
+                });
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                }
+            }
+
+            document.getElementById('score').textContent = `Your score is ${score} out of ${totalQuestions}`;
+            document.querySelector('.overlay').style.display = 'block';
+            document.getElementById('result-popup').style.display = 'block';
+        });
+
+
+        function closePopup() {
+            document.querySelector('.overlay').style.display = 'none';
+            document.getElementById('result-popup').style.display = 'none';
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleSwitch = document.getElementById('modeToggle');
+            const currentTheme = localStorage.getItem('theme');
+
+            if (currentTheme) {
+                document.body.classList.add(currentTheme);
+                if (currentTheme === 'dark-mode') {
+                    toggleSwitch.checked = true;
+                }
+            }
+
+            toggleSwitch.addEventListener('change', function () {
+                if (this.checked) {
+                    document.body.classList.add('dark-mode');
+                    document.body.classList.remove('light-mode');
+                    localStorage.setItem('theme', 'dark-mode');
+                } else {
+                    document.body.classList.add('light-mode');
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light-mode');
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const bubbleContainer = document.querySelector('.bubble-container');
+
+            function createBubble() {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+
+                const size = Math.random() * 70 + 20 + 'px';
+                bubble.style.width = size;
+                bubble.style.height = size;
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDuration = Math.random() * 5 + 10 + 's';
+                bubble.style.animationTimingFunction = 'cubic-bezier(0.36, 0.45, 0.63, 0.53)';
+
+                bubbleContainer.appendChild(bubble);
+
+                setTimeout(() => {
+                    bubble.remove();
+                }, 15000);
+            }
+
+            setInterval(createBubble, 500);
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select the menu toggle button and navigation
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navigation = document.querySelector('.navigation');
+
+            // Add click event listener to toggle menu visibility
+            menuToggle.addEventListener('click', () => {
+                navigation.classList.toggle('active');
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const copyButtons = document.querySelectorAll('.copy');
+
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Find the nearest pre block
+                    const preBlock = button.closest('.pre-container').querySelector('pre');
+
+                    // Get the inner text of the pre block
+                    const codeText = preBlock.innerText;
+
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(codeText).then(() => {
+                        alert('Code copied to clipboard!');
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
